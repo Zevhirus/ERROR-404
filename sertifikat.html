@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sertifikat — Developer & Fotografer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14151a; --bg-panel:#1c1e24; --bg-panel-2:#20222a;
+    --text:#f2f0e8; --muted:#8b8d98;
+    --amber:#c9a227; --amber-soft:#c9a22722;
+    --cyan:#5eead4; --cyan-soft:#5eead422;
+    --violet:#a78bfa; --violet-soft:#a78bfa22;
+    --border:#33353d; --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:
+      radial-gradient(1100px 500px at 15% -10%, #22242c 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, #1a1d22 0%, transparent 55%),
+      var(--bg);
+    color:var(--text); font-family:'IBM Plex Sans', sans-serif;
+    padding:36px 20px 60px;
+  }
+  .page{max-width:1080px; margin:0 auto;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Space Grotesk', sans-serif;}
+
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12px; letter-spacing:.04em; color:var(--muted); padding-bottom:18px;
+  }
+  .topbar .role{display:flex; align-items:center; gap:8px; color:var(--text);}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--violet); box-shadow:0 0 8px var(--violet);}
+
+  .nav{display:flex; align-items:center; gap:6px; padding-bottom:22px; border-bottom:1px solid var(--border); margin-bottom:30px;}
+  .nav a{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); text-decoration:none; padding:8px 14px; border-radius:8px; border:1px solid transparent; transition:.15s;}
+  .nav a:hover{color:var(--text); border-color:var(--border);}
+  .nav a.active{color:var(--violet); background:var(--violet-soft); border-color:#a78bfa44;}
+  .nav .sep{flex:1;}
+  .nav .brand{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:14px; color:var(--text); margin-right:8px;}
+  @media (max-width:520px){.nav{flex-wrap:wrap;} .nav .sep{display:none;}}
+
+  .header{margin-bottom:30px;}
+  .eyebrow{font-size:11px; color:var(--cyan); letter-spacing:.06em; margin-bottom:10px;}
+  .header h1{font-size:32px; margin-bottom:8px;}
+  .header p{color:var(--muted); font-size:13.5px; max-width:520px; line-height:1.6;}
+
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
+  .filters .f{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    padding:7px 13px; border-radius:20px; border:1px solid var(--border);
+    color:var(--muted); background:var(--bg-panel-2);
+  }
+  .filters .f.on{color:var(--violet); border-color:#a78bfa44; background:var(--violet-soft);}
+
+  .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px;}
+  .cert{
+    grid-column:span 4;
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px; display:flex; flex-direction:column; gap:10px;
+    transition:transform .15s, border-color .15s;
+  }
+  .cert:hover{transform:translateY(-3px); border-color:#a78bfa44;}
+  .cert.wide{grid-column:span 8;}
+  .cert-top{display:flex; justify-content:space-between; align-items:flex-start;}
+  .cert-thumb{
+    aspect-ratio: 4/3; border-radius:10px;
+    background:
+      repeating-linear-gradient(135deg, #23262f 0 2px, #1c1e24 2px 14px);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted);
+    width:100%; object-fit:cover; object-position:center;
+  }
+  .cert.wide .cert-thumb{aspect-ratio: 16/9;}
+  .cert h3{font-size:15.5px; margin-bottom:2px;}
+  .cert .issuer{font-size:12px; color:var(--muted); line-height:1.5;}
+  .cert .desc{font-size:12px; color:var(--muted); line-height:1.5;}
+  .meta-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; align-items:center;}
+  .meta-row span{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--text);
+    background:var(--bg-panel-2); border:1px solid var(--border);
+    padding:3px 7px; border-radius:6px;
+  }
+  .cert-link{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text);
+    text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:2px;
+    margin-top:2px; align-self:flex-start;
+  }
+  .cert-link:hover{color:var(--violet); border-color:var(--violet);}
+
+  @media (max-width:760px){
+    .cert, .cert.wide{grid-column:span 12;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <span class="mono">// est. 2003 &nbsp;·&nbsp; portfolio v1</span>
+    <span class="role"><span class="dot"></span> Developer &nbsp;/&nbsp; Fotografer</span>
+  </div>
+
+  <nav class="nav">
+    <span class="brand">✳ Portfolio</span>
+    <a href="index.html">Beranda</a>
+    <a href="proyek.html">Proyek</a>
+    <a href="desain.html">Desain Grafis</a>
+    <a href="foto.html">Hasil Foto</a>
+    <a href="sertifikat.html" class="active">Sertifikat</a>
+    <span class="sep"></span>
+    <a href="https://wa.me/6285179898800" target="_blank" rel="noopener">Kontak ↗</a>
+  </nav>
+
+  <div class="header">
+    <div class="eyebrow mono">> ls sertifikat/ --sort=recent</div>
+    <h1 class="display">Sertifikat & Bukti Pencapaian</h1>
+    <p>Kumpulan sertifikat pelatihan, lomba, magang, dan kegiatan lain sebagai bukti pengalaman dan kompetensi yang pernah didapatkan.</p>
+  </div>
+
+  <div class="filters">
+    <span class="f on">Semua</span>
+    <span class="f">Pelatihan</span>
+    <span class="f">Magang</span>
+    <span class="f">Lomba</span>
+    <span class="f">Organisasi</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="cert wide">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">featured</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2026</span>
+      </div>
+      <img class="cert-thumb" src="sertifikat-kemnaker.jpg" alt="Sertifikat Pelatihan Office Administrator">
+      <h3>Pelatihan Office Administrator</h3>
+      <p class="issuer">BBPVP Makassar — Kementerian Ketenagakerjaan RI</p>
+      <p class="desc">Dinyatakan LULUS pelatihan Office Administrator selama 80 jam (08–17 Juni 2026), mencakup 10 unit kompetensi: pengelolaan arsip, produksi dokumen, komunikasi lisan bahasa Inggris dasar, pengelolaan kas kecil, dan lainnya. No. Sertifikat: 2607067AE9339E.</p>
+      <div class="meta-row"><span>Pelatihan</span><span>Sertifikat Kompetensi</span><span>80 jam</span></div>
+      <a class="cert-link" href="sertifikat-kemnaker.pdf" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">pelatihan</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2026</span>
+      </div>
+      <img class="cert-thumb" src="sertifikat-dicoding.jpg" alt="Sertifikat Dicoding - Data Science dengan Microsoft Fabric">
+      <h3>Belajar Penerapan Data Science dengan Microsoft Fabric</h3>
+      <p class="issuer">Dicoding Indonesia × Microsoft</p>
+      <p class="desc">Kelas end-to-end data science: eksplorasi data, preprocessing, training & tracking model ML dengan MLflow, hingga deployment di Microsoft Fabric. ID: N9ZO070EDXG5.</p>
+      <div class="meta-row"><span>Pelatihan Online</span><span>Data Science</span></div>
+      <a class="cert-link" href="sertifikat-dicoding.pdf" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">organisasi</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2025</span>
+      </div>
+      <div class="cert-thumb">sertifikat-03.jpg</div>
+      <h3>Humas UPTD CPI</h3>
+      <p class="issuer">UPTD CPI</p>
+      <div class="meta-row"><span>Organisasi</span></div>
+      <a class="cert-link" href="#" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">pelatihan</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2024</span>
+      </div>
+      <div class="cert-thumb">sertifikat-04.jpg</div>
+      <h3>Nama Pelatihan</h3>
+      <p class="issuer">Nama Penyelenggara</p>
+      <div class="meta-row"><span>Pelatihan</span></div>
+      <a class="cert-link" href="#" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">lomba</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2023</span>
+      </div>
+      <div class="cert-thumb">sertifikat-05.jpg</div>
+      <h3>Nama Lomba / Kompetisi</h3>
+      <p class="issuer">Nama Penyelenggara</p>
+      <div class="meta-row"><span>Lomba</span></div>
+      <a class="cert-link" href="#" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-top">
+        <span class="eyebrow mono" style="margin-bottom:0;">pelatihan</span>
+        <span class="mono" style="font-size:11px; color:var(--muted);">2022</span>
+      </div>
+      <div class="cert-thumb">sertifikat-06.jpg</div>
+      <h3>Nama Sertifikat Lain</h3>
+      <p class="issuer">Nama Penyelenggara</p>
+      <div class="meta-row"><span>Pelatihan</span></div>
+      <a class="cert-link" href="#" target="_blank" rel="noopener">Lihat Sertifikat ↗</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
